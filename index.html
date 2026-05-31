@@ -3,60 +3,80 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ria's Creative World ✨</title>
+  <title>ria's world 💅✨ no cap</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
     /* ---------- Reset & Base ---------- */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --pink: #ff6b9d;
-      --purple: #c44dff;
-      --blue: #4dc9f6;
-      --yellow: #f7d94e;
-      --mint: #56e0a0;
-      --coral: #ff7eb3;
-      --dark: #2d1b4e;
-      --light: #fdf6ff;
+      --neon-green: #39ff14;
+      --hot-pink: #ff2d95;
+      --electric-blue: #00d4ff;
+      --purple: #b537f2;
+      --yellow: #ffe156;
+      --dark-bg: #0a0a0f;
+      --card-bg: #141420;
+      --card-border: #1e1e30;
+      --text: #e8e8f0;
+      --text-muted: #8888a8;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Fredoka', sans-serif;
-      background: var(--light);
-      color: var(--dark);
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--dark-bg);
+      color: var(--text);
       overflow-x: hidden;
+      cursor: default;
     }
 
-    /* ---------- Floating Shapes Background ---------- */
-    .bg-shapes {
+    ::selection {
+      background: var(--hot-pink);
+      color: #fff;
+    }
+
+    /* ---------- Grain Overlay ---------- */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ---------- Animated Gradient BG ---------- */
+    .bg-gradient {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(181, 55, 242, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(255, 45, 149, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse at 60% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+      animation: gradientShift 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientShift {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(30deg); }
+    }
+
+    /* ---------- Grid Lines ---------- */
+    .grid-lines {
       position: fixed;
       inset: 0;
       z-index: -1;
-      overflow: hidden;
       pointer-events: none;
-    }
-
-    .shape {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.12;
-      animation: floatShape 20s ease-in-out infinite;
-    }
-
-    .shape:nth-child(1) { width: 300px; height: 300px; background: var(--pink); top: -50px; left: -80px; animation-duration: 18s; }
-    .shape:nth-child(2) { width: 200px; height: 200px; background: var(--blue); top: 30%; right: -60px; animation-duration: 22s; animation-delay: -5s; }
-    .shape:nth-child(3) { width: 250px; height: 250px; background: var(--purple); bottom: 10%; left: 10%; animation-duration: 25s; animation-delay: -8s; }
-    .shape:nth-child(4) { width: 180px; height: 180px; background: var(--yellow); top: 60%; right: 20%; animation-duration: 20s; animation-delay: -3s; }
-    .shape:nth-child(5) { width: 150px; height: 150px; background: var(--mint); top: 15%; left: 40%; animation-duration: 24s; animation-delay: -12s; }
-
-    @keyframes floatShape {
-      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-      33% { transform: translateY(-30px) rotate(120deg) scale(1.05); }
-      66% { transform: translateY(20px) rotate(240deg) scale(0.95); }
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
     }
 
     /* ---------- Navigation ---------- */
@@ -67,27 +87,36 @@
       padding: 1rem 2rem;
       display: flex;
       justify-content: center;
-      gap: 1.5rem;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(20px);
       z-index: 100;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      border-bottom: 1px solid var(--card-border);
     }
 
     nav a {
       text-decoration: none;
-      color: var(--dark);
+      color: var(--text-muted);
       font-weight: 600;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       transition: all 0.3s;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
+      text-transform: lowercase;
+      letter-spacing: 0.5px;
     }
 
     nav a:hover {
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      color: #fff;
-      transform: translateY(-2px);
+      color: var(--neon-green);
+      background: rgba(57, 255, 20, 0.08);
+      text-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+    }
+
+    .nav-divider {
+      color: var(--card-border);
+      font-size: 0.7rem;
+      user-select: none;
     }
 
     /* ---------- Hero ---------- */
@@ -102,198 +131,373 @@
       position: relative;
     }
 
-    .hero-emoji {
-      font-size: 5rem;
-      animation: bounce 2s ease-in-out infinite;
-      margin-bottom: 1rem;
+    .hero-tag {
+      font-size: 0.85rem;
+      color: var(--neon-green);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      animation: flicker 3s ease-in-out infinite;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
     }
 
     .hero h1 {
-      font-family: 'Caveat', cursive;
-      font-size: clamp(3rem, 8vw, 6rem);
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 800;
+      line-height: 0.95;
+      text-transform: uppercase;
+      letter-spacing: -2px;
+    }
+
+    .hero h1 .line1 {
+      display: block;
+      -webkit-text-stroke: 2px var(--text);
+      color: transparent;
+    }
+
+    .hero h1 .line2 {
+      display: block;
+      background: linear-gradient(90deg, var(--hot-pink), var(--purple), var(--electric-blue));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      line-height: 1.2;
     }
 
-    .hero p {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-      color: #6b5b7b;
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--text-muted);
       max-width: 500px;
-      margin-top: 1rem;
+      margin-top: 1.5rem;
+      line-height: 1.6;
     }
+
+    .hero-subtitle .highlight {
+      color: var(--yellow);
+      font-weight: 600;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .badge {
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: 1px solid;
+      background: transparent;
+      letter-spacing: 0.5px;
+    }
+
+    .badge:nth-child(1) { border-color: var(--hot-pink); color: var(--hot-pink); }
+    .badge:nth-child(2) { border-color: var(--electric-blue); color: var(--electric-blue); }
+    .badge:nth-child(3) { border-color: var(--neon-green); color: var(--neon-green); }
 
     .scroll-hint {
-      margin-top: 3rem;
-      font-size: 1.5rem;
-      animation: bounce 2s ease-in-out infinite;
-      animation-delay: 1s;
-      opacity: 0.5;
+      margin-top: 4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(5px); }
     }
 
     /* ---------- Section Styling ---------- */
     section {
       padding: 5rem 2rem;
-      max-width: 900px;
+      max-width: 950px;
       margin: 0 auto;
     }
 
-    .section-title {
-      font-family: 'Caveat', cursive;
-      font-size: 2.8rem;
+    .section-header {
       text-align: center;
-      margin-bottom: 2.5rem;
-      position: relative;
+      margin-bottom: 3rem;
     }
 
-    .section-title span {
-      background: linear-gradient(135deg, var(--purple), var(--pink));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--hot-pink);
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: -1px;
     }
 
     /* ---------- About ---------- */
     .about-card {
-      background: #fff;
-      border-radius: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
       padding: 2.5rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
       display: flex;
       gap: 2rem;
       align-items: center;
       flex-wrap: wrap;
       justify-content: center;
-      transition: transform 0.3s;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .about-card:hover { transform: translateY(-4px); }
+    .about-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--hot-pink), var(--purple), var(--electric-blue));
+    }
+
+    .about-card:hover {
+      border-color: rgba(181, 55, 242, 0.3);
+      box-shadow: 0 0 60px rgba(181, 55, 242, 0.08);
+    }
 
     .about-avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      width: 150px;
+      height: 150px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--hot-pink), var(--purple));
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 4rem;
       flex-shrink: 0;
-      box-shadow: 0 6px 30px rgba(196, 77, 255, 0.3);
+      position: relative;
     }
 
-    .about-text { flex: 1; min-width: 250px; }
+    .about-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--hot-pink), var(--purple), var(--electric-blue));
+      z-index: -1;
+      animation: borderGlow 3s ease-in-out infinite alternate;
+    }
 
-    .about-text h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+    @keyframes borderGlow {
+      0% { opacity: 0.5; filter: blur(4px); }
+      100% { opacity: 1; filter: blur(8px); }
+    }
 
-    .about-text p { color: #6b5b7b; line-height: 1.7; font-size: 1.05rem; }
+    .about-text { flex: 1; min-width: 260px; }
 
-    /* ---------- Interests Grid ---------- */
-    .interests-grid {
+    .about-text h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .about-text h3 .wave { display: inline-block; animation: wave 2s ease-in-out infinite; }
+
+    @keyframes wave {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(20deg); }
+      75% { transform: rotate(-10deg); }
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .about-text p .em { color: var(--electric-blue); font-weight: 600; }
+
+    /* ---------- Vibes Grid (Interests) ---------- */
+    .vibes-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
     }
 
-    .interest-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
-      transition: all 0.3s;
+    .vibe-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: default;
+      position: relative;
+      overflow: hidden;
     }
 
-    .interest-card:hover {
-      transform: translateY(-8px) rotate(-1deg);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    .vibe-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 0;
+      transition: height 0.4s;
+      opacity: 0.05;
     }
 
-    .interest-card:nth-child(1) { border-top: 4px solid var(--pink); }
-    .interest-card:nth-child(2) { border-top: 4px solid var(--purple); }
-    .interest-card:nth-child(3) { border-top: 4px solid var(--blue); }
-    .interest-card:nth-child(4) { border-top: 4px solid var(--yellow); }
-    .interest-card:nth-child(5) { border-top: 4px solid var(--mint); }
-    .interest-card:nth-child(6) { border-top: 4px solid var(--coral); }
+    .vibe-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
 
-    .interest-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+    .vibe-card:hover::after { height: 100%; }
 
-    .interest-card h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+    .vibe-card:nth-child(1)::after { background: var(--hot-pink); }
+    .vibe-card:nth-child(2)::after { background: var(--purple); }
+    .vibe-card:nth-child(3)::after { background: var(--electric-blue); }
+    .vibe-card:nth-child(4)::after { background: var(--neon-green); }
+    .vibe-card:nth-child(5)::after { background: var(--yellow); }
+    .vibe-card:nth-child(6)::after { background: var(--hot-pink); }
 
-    .interest-card p { color: #8a7b9b; font-size: 0.9rem; }
+    .vibe-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
 
-    /* ---------- Fun Facts ---------- */
+    .vibe-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      text-transform: lowercase;
+    }
+
+    .vibe-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    .vibe-tag {
+      display: inline-block;
+      margin-top: 0.8rem;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .vibe-card:nth-child(1) .vibe-tag { background: rgba(255,45,149,0.15); color: var(--hot-pink); }
+    .vibe-card:nth-child(2) .vibe-tag { background: rgba(181,55,242,0.15); color: var(--purple); }
+    .vibe-card:nth-child(3) .vibe-tag { background: rgba(0,212,255,0.15); color: var(--electric-blue); }
+    .vibe-card:nth-child(4) .vibe-tag { background: rgba(57,255,20,0.15); color: var(--neon-green); }
+    .vibe-card:nth-child(5) .vibe-tag { background: rgba(255,225,86,0.15); color: var(--yellow); }
+    .vibe-card:nth-child(6) .vibe-tag { background: rgba(255,45,149,0.15); color: var(--hot-pink); }
+
+    /* ---------- Brainrot Facts ---------- */
     .facts-container {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1rem;
     }
 
     .fact {
-      background: #fff;
-      border-radius: 16px;
-      padding: 1.5rem 2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.3rem 1.8rem;
       display: flex;
       align-items: center;
       gap: 1.2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
       transition: all 0.3s;
+      position: relative;
     }
 
     .fact:hover {
       transform: translateX(8px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-color: rgba(57, 255, 20, 0.2);
+      box-shadow: 0 0 30px rgba(57, 255, 20, 0.04);
     }
 
-    .fact-emoji { font-size: 2rem; flex-shrink: 0; }
+    .fact-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--card-border);
+      flex-shrink: 0;
+      width: 40px;
+      text-align: center;
+    }
 
-    .fact p { color: #5a4a6b; font-size: 1.05rem; }
+    .fact:hover .fact-num { color: var(--neon-green); }
 
-    /* ---------- Gallery ---------- */
-    .gallery-grid {
+    .fact p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .fact p strong { color: var(--text); font-weight: 600; }
+
+    /* ---------- Meme Gallery ---------- */
+    .meme-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1.2rem;
     }
 
-    .gallery-item {
+    .meme-card {
       aspect-ratio: 1;
-      border-radius: 20px;
+      border-radius: 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: all 0.4s;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       cursor: default;
       text-align: center;
       padding: 1.5rem;
-      gap: 0.5rem;
+      gap: 0.6rem;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      position: relative;
+      overflow: hidden;
+      text-transform: lowercase;
     }
 
-    .gallery-item:hover {
-      transform: scale(1.05) rotate(2deg);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.15);
+    .meme-card:hover {
+      transform: scale(1.05) rotate(-1deg);
     }
 
-    .gallery-item .g-icon { font-size: 3rem; }
+    .meme-card:nth-child(1):hover { border-color: var(--hot-pink); box-shadow: 0 0 40px rgba(255,45,149,0.15); }
+    .meme-card:nth-child(2):hover { border-color: var(--purple); box-shadow: 0 0 40px rgba(181,55,242,0.15); }
+    .meme-card:nth-child(3):hover { border-color: var(--electric-blue); box-shadow: 0 0 40px rgba(0,212,255,0.15); }
+    .meme-card:nth-child(4):hover { border-color: var(--yellow); box-shadow: 0 0 40px rgba(255,225,86,0.15); }
+    .meme-card:nth-child(5):hover { border-color: var(--neon-green); box-shadow: 0 0 40px rgba(57,255,20,0.15); }
+    .meme-card:nth-child(6):hover { border-color: var(--hot-pink); box-shadow: 0 0 40px rgba(255,45,149,0.15); }
 
-    .gallery-item:nth-child(1) { background: linear-gradient(135deg, #ff6b9d, #ff9a76); }
-    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #c44dff, #7b68ee); }
-    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #4dc9f6, #56e0a0); }
-    .gallery-item:nth-child(4) { background: linear-gradient(135deg, #f7d94e, #ff7eb3); }
-    .gallery-item:nth-child(5) { background: linear-gradient(135deg, #56e0a0, #4dc9f6); }
-    .gallery-item:nth-child(6) { background: linear-gradient(135deg, #7b68ee, #ff6b9d); }
+    .meme-card .m-icon { font-size: 2.8rem; }
+
+    .meme-card .m-label { color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
 
     /* ---------- Quote ---------- */
     .quote-section {
@@ -302,35 +506,109 @@
     }
 
     .quote-box {
-      max-width: 600px;
+      max-width: 650px;
       margin: 0 auto;
-      background: linear-gradient(135deg, var(--purple), var(--pink));
-      color: #fff;
-      border-radius: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
       padding: 3rem;
-      box-shadow: 0 12px 50px rgba(196, 77, 255, 0.25);
+      position: relative;
     }
 
-    .quote-box .q-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .quote-box::before {
+      content: '"';
+      font-family: 'Syne', sans-serif;
+      font-size: 8rem;
+      font-weight: 800;
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      background: linear-gradient(135deg, var(--hot-pink), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.3;
+      line-height: 1;
+    }
 
     .quote-box blockquote {
-      font-family: 'Caveat', cursive;
-      font-size: 1.8rem;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
       line-height: 1.4;
       margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
     }
 
-    .quote-box cite { font-size: 1rem; opacity: 0.85; }
+    .quote-box cite {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: normal;
+    }
+
+    /* ---------- Marquee ---------- */
+    .marquee-container {
+      overflow: hidden;
+      padding: 2rem 0;
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      margin: 2rem 0;
+    }
+
+    .marquee {
+      display: flex;
+      gap: 3rem;
+      animation: marquee 20s linear infinite;
+      width: max-content;
+    }
+
+    .marquee span {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: var(--text-muted);
+      opacity: 0.3;
+    }
+
+    .marquee span.accent { color: var(--hot-pink); opacity: 0.6; }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
     /* ---------- Footer ---------- */
     footer {
       text-align: center;
-      padding: 3rem 2rem;
-      color: #8a7b9b;
-      font-size: 0.9rem;
+      padding: 4rem 2rem 3rem;
+      border-top: 1px solid var(--card-border);
     }
 
-    footer .hearts { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .footer-logo {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(90deg, var(--hot-pink), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .footer-emoji {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      display: block;
+    }
 
     /* ---------- Animations on Scroll ---------- */
     .fade-in {
@@ -346,148 +624,220 @@
 
     /* ---------- Responsive ---------- */
     @media (max-width: 600px) {
-      nav { gap: 0.5rem; padding: 0.8rem 1rem; }
-      nav a { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
-      .about-avatar { width: 120px; height: 120px; font-size: 3rem; }
+      nav { gap: 0.2rem; padding: 0.8rem 0.5rem; }
+      nav a { font-size: 0.75rem; padding: 0.3rem 0.6rem; }
+      .nav-divider { display: none; }
+      .about-avatar { width: 110px; height: 110px; font-size: 3rem; }
       section { padding: 3rem 1.2rem; }
+      .hero h1 { letter-spacing: -1px; }
+      .meme-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
-  <!-- Floating Background Shapes -->
-  <div class="bg-shapes">
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-    <div class="shape"></div>
-  </div>
+  <!-- Background Effects -->
+  <div class="bg-gradient"></div>
+  <div class="grid-lines"></div>
 
   <!-- Navigation -->
   <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#interests">Interests</a>
-    <a href="#facts">Fun Facts</a>
-    <a href="#gallery">Gallery</a>
+    <a href="#home">home</a>
+    <span class="nav-divider">/</span>
+    <a href="#about">about</a>
+    <span class="nav-divider">/</span>
+    <a href="#vibes">vibes</a>
+    <span class="nav-divider">/</span>
+    <a href="#facts">facts</a>
+    <span class="nav-divider">/</span>
+    <a href="#gallery">gallery</a>
   </nav>
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <div class="hero-emoji">🎨</div>
-    <h1>Hi, I'm Ria!</h1>
-    <p>Welcome to my creative corner of the internet. I'm a Year 7 student who loves making, dreaming, and exploring new ideas! ✨</p>
-    <div class="scroll-hint">⬇️</div>
+    <div class="hero-tag">✦ year 7 creative ✦</div>
+    <h1>
+      <span class="line1">hey it's</span>
+      <span class="line2">Ria</span>
+    </h1>
+    <p class="hero-subtitle">welcome to my corner of the internet 💅<br/>creative soul, <span class="highlight">meme enthusiast</span>, and full-time dreamer fr fr ✨</p>
+    <div class="hero-badges">
+      <span class="badge">💖 creative</span>
+      <span class="badge">🧠 big brain</span>
+      <span class="badge">✨ main character</span>
+    </div>
+    <div class="scroll-hint">↓ scroll down bestie ↓</div>
   </section>
+
+  <!-- Marquee -->
+  <div class="marquee-container">
+    <div class="marquee">
+      <span>creative</span>
+      <span class="accent">✦</span>
+      <span>year 7</span>
+      <span class="accent">✦</span>
+      <span>no cap</span>
+      <span class="accent">✦</span>
+      <span>slay</span>
+      <span class="accent">✦</span>
+      <span>main character energy</span>
+      <span class="accent">✦</span>
+      <span>fr fr</span>
+      <span class="accent">✦</span>
+      <span>ria's world</span>
+      <span class="accent">✦</span>
+      <span>creative</span>
+      <span class="accent">✦</span>
+      <span>year 7</span>
+      <span class="accent">✦</span>
+      <span>no cap</span>
+      <span class="accent">✦</span>
+      <span>slay</span>
+      <span class="accent">✦</span>
+      <span>main character energy</span>
+      <span class="accent">✦</span>
+      <span>fr fr</span>
+      <span class="accent">✦</span>
+      <span>ria's world</span>
+      <span class="accent">✦</span>
+    </div>
+  </div>
 
   <!-- About -->
   <section id="about">
-    <h2 class="section-title fade-in"><span>About Me</span> 💫</h2>
+    <div class="section-header fade-in">
+      <div class="section-label">// who am i</div>
+      <h2 class="section-title">About Me 💫</h2>
+    </div>
     <div class="about-card fade-in">
-      <div class="about-avatar">🌟</div>
+      <div class="about-avatar">👑</div>
       <div class="about-text">
-        <h3>Hey there! I'm Ria 👋</h3>
+        <h3>hey bestie, i'm ria <span class="wave">👋</span></h3>
         <p>
-          I'm a Year 7 student with a big imagination and an even bigger love for creativity!
-          Whether it's drawing, writing stories, experimenting with colours, or learning
-          something brand new — I'm always up for a creative adventure. I believe that
-          every day is a chance to make something amazing. 🎨
+          year 7 student with <span class="em">unhinged creativity</span> and a brain that never stops.
+          whether it's drawing, writing stories, or scrolling through memes at 2am
+          (don't tell my parents 💀) — i'm always doing something creative.
+          honestly? every day is a new chance to <span class="em">absolutely slay</span>. no cap. 🔥
         </p>
       </div>
     </div>
   </section>
 
-  <!-- Interests -->
-  <section id="interests">
-    <h2 class="section-title fade-in"><span>My Interests</span> 🌈</h2>
-    <div class="interests-grid">
-      <div class="interest-card fade-in">
-        <div class="interest-icon">🎨</div>
-        <h3>Art &amp; Drawing</h3>
-        <p>Sketching characters, painting with watercolours, and doodling everywhere!</p>
+  <!-- Vibes (Interests) -->
+  <section id="vibes">
+    <div class="section-header fade-in">
+      <div class="section-label">// the vibes</div>
+      <h2 class="section-title">My Interests 🌈</h2>
+    </div>
+    <div class="vibes-grid">
+      <div class="vibe-card fade-in">
+        <span class="vibe-icon">🎨</span>
+        <h3>art & drawing</h3>
+        <p>sketching characters at the back of my notebook when i should be doing maths 💀</p>
+        <span class="vibe-tag">obsessed</span>
       </div>
-      <div class="interest-card fade-in">
-        <div class="interest-icon">📖</div>
-        <h3>Creative Writing</h3>
-        <p>Crafting stories, poems, and letting my imagination run wild on paper.</p>
+      <div class="vibe-card fade-in">
+        <span class="vibe-icon">📖</span>
+        <h3>creative writing</h3>
+        <p>writing stories with plot twists that would make netflix jealous tbh</p>
+        <span class="vibe-tag">no cap</span>
       </div>
-      <div class="interest-card fade-in">
-        <div class="interest-icon">🎵</div>
-        <h3>Music</h3>
-        <p>Listening to my favourite tunes and exploring different genres.</p>
+      <div class="vibe-card fade-in">
+        <span class="vibe-icon">🎵</span>
+        <h3>music</h3>
+        <p>my playlist is elite. if you don't agree, that's a you problem bestie 💅</p>
+        <span class="vibe-tag">elite taste</span>
       </div>
-      <div class="interest-card fade-in">
-        <div class="interest-icon">🌿</div>
-        <h3>Nature</h3>
-        <p>Finding beauty in nature — sunsets, flowers, and outdoor adventures.</p>
+      <div class="vibe-card fade-in">
+        <span class="vibe-icon">🌿</span>
+        <h3>nature</h3>
+        <p>sunsets are free therapy. touching grass is my cardio fr fr</p>
+        <span class="vibe-tag">aesthetic</span>
       </div>
-      <div class="interest-card fade-in">
-        <div class="interest-icon">💻</div>
-        <h3>Technology</h3>
-        <p>Learning to code and create cool things on the computer!</p>
+      <div class="vibe-card fade-in">
+        <span class="vibe-icon">💻</span>
+        <h3>tech stuff</h3>
+        <p>learning to code so i can build things that are actually useful (unlike this page jk)</p>
+        <span class="vibe-tag">big brain</span>
       </div>
-      <div class="interest-card fade-in">
-        <div class="interest-icon">📸</div>
-        <h3>Photography</h3>
-        <p>Capturing moments and seeing the world through a different lens.</p>
+      <div class="vibe-card fade-in">
+        <span class="vibe-icon">📸</span>
+        <h3>photography</h3>
+        <p>every photo i take is a potential profile pic let's be real</p>
+        <span class="vibe-tag">slay</span>
       </div>
     </div>
   </section>
 
   <!-- Fun Facts -->
   <section id="facts">
-    <h2 class="section-title fade-in"><span>Fun Facts</span> 🎉</h2>
+    <div class="section-header fade-in">
+      <div class="section-label">// tea time</div>
+      <h2 class="section-title">Fun Facts 🍵</h2>
+    </div>
     <div class="facts-container">
       <div class="fact fade-in">
-        <span class="fact-emoji">🌟</span>
-        <p>I can spend hours lost in a sketchbook without even noticing!</p>
+        <span class="fact-num">01</span>
+        <p>i can spend <strong>actual hours</strong> in a sketchbook and not notice time passing 💀 it's giving hyperfocus</p>
       </div>
       <div class="fact fade-in">
-        <span class="fact-emoji">🎭</span>
-        <p>I love making up characters and giving them whole backstories.</p>
+        <span class="fact-num">02</span>
+        <p>i make up characters with <strong>entire backstories</strong> and get emotionally attached to them. it's a problem.</p>
       </div>
       <div class="fact fade-in">
-        <span class="fact-emoji">🌈</span>
-        <p>My favourite colours are purple, pink, and turquoise — basically anything bright!</p>
+        <span class="fact-num">03</span>
+        <p>favourite colours: <strong>purple, pink, and turquoise</strong> — basically anything that looks like a vaporwave sunset</p>
       </div>
       <div class="fact fade-in">
-        <span class="fact-emoji">📚</span>
-        <p>I'm always reading at least two books at the same time.</p>
+        <span class="fact-num">04</span>
+        <p>always reading <strong>at least two books</strong> at the same time because one is never enough (adhd core)</p>
       </div>
       <div class="fact fade-in">
-        <span class="fact-emoji">✨</span>
-        <p>I believe creativity is a superpower — and everyone has it!</p>
+        <span class="fact-num">05</span>
+        <p><strong>67 is my favourite number</strong> — it just hits different idk how to explain it no cap 🔥</p>
+      </div>
+      <div class="fact fade-in">
+        <span class="fact-num">06</span>
+        <p>creativity is literally a <strong>superpower</strong> and everyone has it. that's not an opinion, that's a fact. 💅</p>
       </div>
     </div>
   </section>
 
   <!-- Gallery -->
   <section id="gallery">
-    <h2 class="section-title fade-in"><span>Creative Gallery</span> 🖼️</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item fade-in">
-        <span class="g-icon">🎨</span>
-        Art Projects
+    <div class="section-header fade-in">
+      <div class="section-label">// the portfolio</div>
+      <h2 class="section-title">Gallery 🖼️</h2>
+    </div>
+    <div class="meme-grid">
+      <div class="meme-card fade-in">
+        <span class="m-icon">🎨</span>
+        art dumps
+        <span class="m-label">it's giving Picasso</span>
       </div>
-      <div class="gallery-item fade-in">
-        <span class="g-icon">✍️</span>
-        Story Writing
+      <div class="meme-card fade-in">
+        <span class="m-icon">✍️</span>
+        story time
+        <span class="m-label">wattpad could never</span>
       </div>
-      <div class="gallery-item fade-in">
-        <span class="g-icon">🌸</span>
-        Nature Photos
+      <div class="meme-card fade-in">
+        <span class="m-icon">🌸</span>
+        aesthetic pics
+        <span class="m-label">main character vibes</span>
       </div>
-      <div class="gallery-item fade-in">
-        <span class="g-icon">🎭</span>
-        Characters
+      <div class="meme-card fade-in">
+        <span class="m-icon">🎭</span>
+        oc showcase
+        <span class="m-label">they're my children</span>
       </div>
-      <div class="gallery-item fade-in">
-        <span class="g-icon">🎵</span>
-        Music Playlist
+      <div class="meme-card fade-in">
+        <span class="m-icon">🎵</span>
+        playlists
+        <span class="m-label">elite taste only</span>
       </div>
-      <div class="gallery-item fade-in">
-        <span class="g-icon">💡</span>
-        Ideas Board
+      <div class="meme-card fade-in">
+        <span class="m-icon">💡</span>
+        ideas board
+        <span class="m-label">3am thoughts</span>
       </div>
     </div>
   </section>
@@ -495,16 +845,50 @@
   <!-- Quote -->
   <div class="quote-section">
     <div class="quote-box fade-in">
-      <div class="q-icon">💭</div>
       <blockquote>"Creativity is intelligence having fun."</blockquote>
-      <cite>— Albert Einstein</cite>
+      <cite>— Albert Einstein (he gets it fr)</cite>
+    </div>
+  </div>
+
+  <!-- Marquee 2 -->
+  <div class="marquee-container">
+    <div class="marquee">
+      <span>slay</span>
+      <span class="accent">✦</span>
+      <span>no cap</span>
+      <span class="accent">✦</span>
+      <span>fr fr</span>
+      <span class="accent">✦</span>
+      <span>it's giving creative</span>
+      <span class="accent">✦</span>
+      <span>main character</span>
+      <span class="accent">✦</span>
+      <span>67</span>
+      <span class="accent">✦</span>
+      <span>vibes</span>
+      <span class="accent">✦</span>
+      <span>slay</span>
+      <span class="accent">✦</span>
+      <span>no cap</span>
+      <span class="accent">✦</span>
+      <span>fr fr</span>
+      <span class="accent">✦</span>
+      <span>it's giving creative</span>
+      <span class="accent">✦</span>
+      <span>main character</span>
+      <span class="accent">✦</span>
+      <span>67</span>
+      <span class="accent">✦</span>
+      <span>vibes</span>
+      <span class="accent">✦</span>
     </div>
   </div>
 
   <!-- Footer -->
   <footer>
-    <div class="hearts">💜 💖 💙</div>
-    <p>Made with love by Ria &bull; Year 7 &bull; 2026</p>
+    <div class="footer-logo">ria's world ✦</div>
+    <p>made with 💖 and too much screen time &bull; year 7 &bull; 2026</p>
+    <span class="footer-emoji">💅✨🔥</span>
   </footer>
 
   <!-- Scroll Animation Script -->
@@ -518,6 +902,29 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Custom cursor trail effect
+    document.addEventListener('mousemove', (e) => {
+      const trail = document.createElement('div');
+      trail.style.cssText = `
+        position: fixed;
+        left: ${e.clientX}px;
+        top: ${e.clientY}px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--hot-pink);
+        pointer-events: none;
+        z-index: 10000;
+        transition: all 0.5s ease;
+      `;
+      document.body.appendChild(trail);
+      requestAnimationFrame(() => {
+        trail.style.opacity = '0';
+        trail.style.transform = 'scale(3)';
+      });
+      setTimeout(() => trail.remove(), 500);
+    });
   </script>
 </body>
 </html>
