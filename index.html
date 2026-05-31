@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ria's Creative World ✨</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---------- Reset & Base ---------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pink: #ff6b9d;
+      --purple: #c44dff;
+      --blue: #4dc9f6;
+      --yellow: #f7d94e;
+      --mint: #56e0a0;
+      --coral: #ff7eb3;
+      --dark: #2d1b4e;
+      --light: #fdf6ff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Fredoka', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* ---------- Floating Shapes Background ---------- */
+    .bg-shapes {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.12;
+      animation: floatShape 20s ease-in-out infinite;
+    }
+
+    .shape:nth-child(1) { width: 300px; height: 300px; background: var(--pink); top: -50px; left: -80px; animation-duration: 18s; }
+    .shape:nth-child(2) { width: 200px; height: 200px; background: var(--blue); top: 30%; right: -60px; animation-duration: 22s; animation-delay: -5s; }
+    .shape:nth-child(3) { width: 250px; height: 250px; background: var(--purple); bottom: 10%; left: 10%; animation-duration: 25s; animation-delay: -8s; }
+    .shape:nth-child(4) { width: 180px; height: 180px; background: var(--yellow); top: 60%; right: 20%; animation-duration: 20s; animation-delay: -3s; }
+    .shape:nth-child(5) { width: 150px; height: 150px; background: var(--mint); top: 15%; left: 40%; animation-duration: 24s; animation-delay: -12s; }
+
+    @keyframes floatShape {
+      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+      33% { transform: translateY(-30px) rotate(120deg) scale(1.05); }
+      66% { transform: translateY(20px) rotate(240deg) scale(0.95); }
+    }
+
+    /* ---------- Navigation ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero-emoji {
+      font-size: 5rem;
+      animation: bounce 2s ease-in-out infinite;
+      margin-bottom: 1rem;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .hero h1 {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(3rem, 8vw, 6rem);
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      color: #6b5b7b;
+      max-width: 500px;
+      margin-top: 1rem;
+    }
+
+    .scroll-hint {
+      margin-top: 3rem;
+      font-size: 1.5rem;
+      animation: bounce 2s ease-in-out infinite;
+      animation-delay: 1s;
+      opacity: 0.5;
+    }
+
+    /* ---------- Section Styling ---------- */
+    section {
+      padding: 5rem 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Caveat', cursive;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .section-title span {
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ---------- About ---------- */
+    .about-card {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      transition: transform 0.3s;
+    }
+
+    .about-card:hover { transform: translateY(-4px); }
+
+    .about-avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--purple), var(--blue));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      flex-shrink: 0;
+      box-shadow: 0 6px 30px rgba(196, 77, 255, 0.3);
+    }
+
+    .about-text { flex: 1; min-width: 250px; }
+
+    .about-text h3 { font-size: 1.5rem; margin-bottom: 0.8rem; }
+
+    .about-text p { color: #6b5b7b; line-height: 1.7; font-size: 1.05rem; }
+
+    /* ---------- Interests Grid ---------- */
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .interest-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .interest-card:nth-child(1) { border-top: 4px solid var(--pink); }
+    .interest-card:nth-child(2) { border-top: 4px solid var(--purple); }
+    .interest-card:nth-child(3) { border-top: 4px solid var(--blue); }
+    .interest-card:nth-child(4) { border-top: 4px solid var(--yellow); }
+    .interest-card:nth-child(5) { border-top: 4px solid var(--mint); }
+    .interest-card:nth-child(6) { border-top: 4px solid var(--coral); }
+
+    .interest-icon { font-size: 3rem; margin-bottom: 0.8rem; }
+
+    .interest-card h3 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+
+    .interest-card p { color: #8a7b9b; font-size: 0.9rem; }
+
+    /* ---------- Fun Facts ---------- */
+    .facts-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .fact {
+      background: #fff;
+      border-radius: 16px;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transition: all 0.3s;
+    }
+
+    .fact:hover {
+      transform: translateX(8px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .fact-emoji { font-size: 2rem; flex-shrink: 0; }
+
+    .fact p { color: #5a4a6b; font-size: 1.05rem; }
+
+    /* ---------- Gallery ---------- */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.4s;
+      cursor: default;
+      text-align: center;
+      padding: 1.5rem;
+      gap: 0.5rem;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05) rotate(2deg);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.15);
+    }
+
+    .gallery-item .g-icon { font-size: 3rem; }
+
+    .gallery-item:nth-child(1) { background: linear-gradient(135deg, #ff6b9d, #ff9a76); }
+    .gallery-item:nth-child(2) { background: linear-gradient(135deg, #c44dff, #7b68ee); }
+    .gallery-item:nth-child(3) { background: linear-gradient(135deg, #4dc9f6, #56e0a0); }
+    .gallery-item:nth-child(4) { background: linear-gradient(135deg, #f7d94e, #ff7eb3); }
+    .gallery-item:nth-child(5) { background: linear-gradient(135deg, #56e0a0, #4dc9f6); }
+    .gallery-item:nth-child(6) { background: linear-gradient(135deg, #7b68ee, #ff6b9d); }
+
+    /* ---------- Quote ---------- */
+    .quote-section {
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+
+    .quote-box {
+      max-width: 600px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--purple), var(--pink));
+      color: #fff;
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: 0 12px 50px rgba(196, 77, 255, 0.25);
+    }
+
+    .quote-box .q-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+    .quote-box blockquote {
+      font-family: 'Caveat', cursive;
+      font-size: 1.8rem;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+    }
+
+    .quote-box cite { font-size: 1rem; opacity: 0.85; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #8a7b9b;
+      font-size: 0.9rem;
+    }
+
+    footer .hearts { font-size: 1.5rem; margin-bottom: 0.5rem; }
+
+    /* ---------- Animations on Scroll ---------- */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 600px) {
+      nav { gap: 0.5rem; padding: 0.8rem 1rem; }
+      nav a { font-size: 0.8rem; padding: 0.3rem 0.7rem; }
+      .about-avatar { width: 120px; height: 120px; font-size: 3rem; }
+      section { padding: 3rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating Background Shapes -->
+  <div class="bg-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#interests">Interests</a>
+    <a href="#facts">Fun Facts</a>
+    <a href="#gallery">Gallery</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-emoji">🎨</div>
+    <h1>Hi, I'm Ria!</h1>
+    <p>Welcome to my creative corner of the internet. I'm a Year 7 student who loves making, dreaming, and exploring new ideas! ✨</p>
+    <div class="scroll-hint">⬇️</div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2 class="section-title fade-in"><span>About Me</span> 💫</h2>
+    <div class="about-card fade-in">
+      <div class="about-avatar">🌟</div>
+      <div class="about-text">
+        <h3>Hey there! I'm Ria 👋</h3>
+        <p>
+          I'm a Year 7 student with a big imagination and an even bigger love for creativity!
+          Whether it's drawing, writing stories, experimenting with colours, or learning
+          something brand new — I'm always up for a creative adventure. I believe that
+          every day is a chance to make something amazing. 🎨
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interests -->
+  <section id="interests">
+    <h2 class="section-title fade-in"><span>My Interests</span> 🌈</h2>
+    <div class="interests-grid">
+      <div class="interest-card fade-in">
+        <div class="interest-icon">🎨</div>
+        <h3>Art &amp; Drawing</h3>
+        <p>Sketching characters, painting with watercolours, and doodling everywhere!</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">📖</div>
+        <h3>Creative Writing</h3>
+        <p>Crafting stories, poems, and letting my imagination run wild on paper.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">🎵</div>
+        <h3>Music</h3>
+        <p>Listening to my favourite tunes and exploring different genres.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">🌿</div>
+        <h3>Nature</h3>
+        <p>Finding beauty in nature — sunsets, flowers, and outdoor adventures.</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">💻</div>
+        <h3>Technology</h3>
+        <p>Learning to code and create cool things on the computer!</p>
+      </div>
+      <div class="interest-card fade-in">
+        <div class="interest-icon">📸</div>
+        <h3>Photography</h3>
+        <p>Capturing moments and seeing the world through a different lens.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fun Facts -->
+  <section id="facts">
+    <h2 class="section-title fade-in"><span>Fun Facts</span> 🎉</h2>
+    <div class="facts-container">
+      <div class="fact fade-in">
+        <span class="fact-emoji">🌟</span>
+        <p>I can spend hours lost in a sketchbook without even noticing!</p>
+      </div>
+      <div class="fact fade-in">
+        <span class="fact-emoji">🎭</span>
+        <p>I love making up characters and giving them whole backstories.</p>
+      </div>
+      <div class="fact fade-in">
+        <span class="fact-emoji">🌈</span>
+        <p>My favourite colours are purple, pink, and turquoise — basically anything bright!</p>
+      </div>
+      <div class="fact fade-in">
+        <span class="fact-emoji">📚</span>
+        <p>I'm always reading at least two books at the same time.</p>
+      </div>
+      <div class="fact fade-in">
+        <span class="fact-emoji">✨</span>
+        <p>I believe creativity is a superpower — and everyone has it!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2 class="section-title fade-in"><span>Creative Gallery</span> 🖼️</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in">
+        <span class="g-icon">🎨</span>
+        Art Projects
+      </div>
+      <div class="gallery-item fade-in">
+        <span class="g-icon">✍️</span>
+        Story Writing
+      </div>
+      <div class="gallery-item fade-in">
+        <span class="g-icon">🌸</span>
+        Nature Photos
+      </div>
+      <div class="gallery-item fade-in">
+        <span class="g-icon">🎭</span>
+        Characters
+      </div>
+      <div class="gallery-item fade-in">
+        <span class="g-icon">🎵</span>
+        Music Playlist
+      </div>
+      <div class="gallery-item fade-in">
+        <span class="g-icon">💡</span>
+        Ideas Board
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <div class="quote-section">
+    <div class="quote-box fade-in">
+      <div class="q-icon">💭</div>
+      <blockquote>"Creativity is intelligence having fun."</blockquote>
+      <cite>— Albert Einstein</cite>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="hearts">💜 💖 💙</div>
+    <p>Made with love by Ria &bull; Year 7 &bull; 2026</p>
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
